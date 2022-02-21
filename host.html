@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JDE | Conference</title>
+    <script src='http://localhost/19/assets/js/host.js'></script>
+</head>
+<style>
+    body{
+        width: 100%;
+        height: 100vh;
+    }
+    #react{
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<body id="master">
+    <script>
+        var container = document.querySelector('#master');
+        var api = null;
+
+        window.addEventListener('load', () => {
+            var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var stringLength = 30;
+
+            function pickRandom() {
+                return possible[Math.floor(Math.random() * possible.length)];
+            }
+            var randomString = Array.apply(null, Array(stringLength)).map(pickRandom).join('');
+            var domain = "meet.jit.si";
+            var options = {
+                "roomName": randomString,
+                "parentNode": container,
+                "width": screen.width,
+                "height": screen.height,
+            };
+            api = new JitsiMeetExternalAPI(domain, options);
+        });
+    </script>
+</body>
+
+</html>
